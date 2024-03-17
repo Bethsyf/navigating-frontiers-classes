@@ -16,6 +16,7 @@ function kb(bytes) {
 function mb(bytes) {
   return kb(bytes) / size;
 }
+
 function gb(bytes) {
   return mb(bytes) / size;
 }

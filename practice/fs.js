@@ -24,17 +24,17 @@
 // escribir(__dirname + '/archivo1.txt', 'Soy un archivo nuevo', console.log);
 //  leer(__dirname + '/archivo.txt', console.log);
 
-const { spawn } = require('child_process');
+const { exec } = require('child_process');
 
-// exec('dir', (err, stdout, sterr) => {
-//   if (err) {
-//     console.error(err);
-//     return false;
-//   }
-//   console.log(stdout);
-// });
+exec('dir', (err, stdout, sterr) => {
+  if (err) {
+    console.error(err);
+    return false;
+  }
+  console.log(stdout);
+});
 
-let proceso = spawn('dir', ['-la']);
+// let proceso = spawn('dir', ['-la']);
 
-console.log(proceso.pid);
-console.log(proceso.connected);
+// console.log(proceso.pid);
+// console.log(proceso.connected);
