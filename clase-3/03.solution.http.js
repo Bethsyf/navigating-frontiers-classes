@@ -12,6 +12,15 @@ const server = http.createServer((req, res) => {
   });
 
   req.on('end', () => {
+    //GET
+    if (req.method === 'GET' && req.url === '/') {
+      res.writeHead(200, {
+        'Content-Type': 'text/plain',
+      });
+      res.end(
+        'Hola, este es el server3.\nPara acceder al contador A: /counterA\nPara acceder al contador B: /counterB'
+      );
+    }
     if (req.method === 'GET' && req.url === '/counterA') {
       const resBody = { counterA };
 

@@ -1,41 +1,32 @@
 import express from 'express';
 
-const app = express();
 const PORT = 3000;
+const app = express();
 
 let counterA = 0;
 let counterB = 0;
 
-app.get('/', (req, res) => {
-  res.status(200);
-  res.send(
-    'Hola, este es el server2.<br/>Para acceder al contador A: /counterA<br/>Para acceder al contador B: /counterB'
-  );
-});
+app.use(express.json());
 
 app.get('/counterA', (req, res) => {
   const resBody = { counterA };
-
   res.status(200).json(resBody);
 });
 
 app.get('/counterB', (req, res) => {
   const resBody = { counterB };
-
   res.status(200).json(resBody);
 });
 
 app.post('/counterA', (req, res) => {
-  counterA++;
+  counterA += parseInt(req.body.increment);
   const resBody = { counterA };
-
   res.status(200).json(resBody);
 });
 
 app.post('/counterB', (req, res) => {
-  counterB++;
+  counterB += parseInt(req.body.increment);
   const resBody = { counterB };
-
   res.status(200).json(resBody);
 });
 
