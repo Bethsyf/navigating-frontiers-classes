@@ -9,7 +9,7 @@ const ShoppingList = ['Milk', 'Bread', 'Eggs', 'Tomatoes'];
 app.use(express.json());
 
 app.get('/shopping-list', (req, res) => {
-  const resBody = { ShoppingList };
+  const resBody = ShoppingList;
   res.status(200).send(resBody);
 });
 
@@ -24,7 +24,7 @@ app.post('/shopping-list', (req, res) => {
     return;
   }
   ShoppingList.push(req.body.item);
-  const resBody = { ShoppingList };
+  const resBody = { item };
   res.status(201).send(resBody);
 });
 

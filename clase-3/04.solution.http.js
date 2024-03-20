@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
 
   req.on('end', () => {
     if (req.method === 'GET' && req.url === '/shopping-list') {
-      const resBody = { ShoppingList };
+      const resBody = ShoppingList;
       res.writeHead(200, {
         'Content-Type': 'application/json',
       });
@@ -34,10 +34,7 @@ const server = http.createServer((req, res) => {
         return;
       }
       ShoppingList.push(item.item);
-      const resBody = {
-        ShoppingList,
-      };
-
+      const resBody = item;
       res.writeHead(201, {
         'Content-Type': 'application/json',
       });
