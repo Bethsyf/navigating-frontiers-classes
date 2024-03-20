@@ -40,6 +40,10 @@ const server = http.createServer((req, res) => {
       });
       res.end(JSON.stringify(resBody));
     }
+    if (!res.headersSent) {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'Not Found' }));
+    }
   });
 });
 

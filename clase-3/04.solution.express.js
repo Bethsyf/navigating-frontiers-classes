@@ -28,6 +28,10 @@ app.post('/shopping-list', (req, res) => {
   res.status(201).send(resBody);
 });
 
+app.use((req, res, next) => {
+  res.status(404).send({ error: 'Not Found' });
+});
+
 app.listen(PORT, () => {
   console.log(`Express server running at http://localhost:${PORT} 🚀`);
 });
