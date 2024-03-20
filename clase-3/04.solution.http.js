@@ -19,34 +19,29 @@ const server = http.createServer((req, res) => {
     }
 
     if (req.method === 'POST' && req.url === '/shopping-list') {
-      try {
-        const item = JSON.parse(reqBody);
-        if (!item || !item.item) {
-          res.writeHead(400, { 'Content-Type': 'application/json' });
-          res.end(
-            JSON.stringify({ error: "Bad Request: missing 'item' property" })
-          );
-          res.end(JSON.stringify(response));
-        }
-
-        if (ShoppingList.includes(item.item)) {
-          res.writeHead(409, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: 'Item already exists in the list' }));
-          res.end(JSON.stringify(response));
-        }
-        ShoppingList.push(item.item);
-        const response = {
-          ShoppingList,
-        };
-
-        res.writeHead(201, {
-          'Content-Type': 'application/json',
-        });
-        res.end(JSON.stringify(response));
-      } catch (error) {
+      const item = JSON.parse(reqBody);
+      if (!item || !item.item) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Invalid request body format' }));
+        res.end(
+          JSON.stringify({ error: "Bad Request: missing 'item' property" })
+        );
+        return;
       }
+
+      if (ShoppingList.includes(item.item)) {
+        res.writeHead(409, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Item already exists in the list' }));
+        return;
+      }
+      ShoppingList.push(item.item);
+      const resBody = {
+        ShoppingList,
+      };
+
+      res.writeHead(201, {
+        'Content-Type': 'application/json',
+      });
+      res.end(JSON.stringify(resBody));
     }
   });
 });

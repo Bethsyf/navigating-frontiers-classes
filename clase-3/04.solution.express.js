@@ -17,9 +17,11 @@ app.post('/shopping-list', (req, res) => {
   const { item } = req.body;
   if (!item) {
     res.status(400).send({ error: "Bad Request: missing 'item' property" });
+    return;
   }
   if (ShoppingList.includes(item)) {
     res.status(409).send({ error: 'Item already exists in the list' });
+    return;
   }
   ShoppingList.push(req.body.item);
   const resBody = { ShoppingList };
