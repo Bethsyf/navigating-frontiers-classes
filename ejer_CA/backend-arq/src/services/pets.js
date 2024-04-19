@@ -1,7 +1,7 @@
 const petDB = require('../database/memory');
 
 const getAll = (req, res) => {
-  return petDB.map((pet) => ({ name: pet.name }));
+  return petDB;
 };
 
 /**
