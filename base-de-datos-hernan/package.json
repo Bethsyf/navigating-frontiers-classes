@@ -1,0 +1,20 @@
+{
+    "name": "vaquita-light",
+    "version": "1.0.0",
+    "description": "Un repositorio simplificado para la app de la vaquita",
+    "main": "postgres-minimalista.js",
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon src/postgres-minimalista.js"
+    },
+    "keywords": [],
+    "author": "Hernan Metaute",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.19.2",
+        "pg": "^8.11.5"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.0"
+    }
+}
